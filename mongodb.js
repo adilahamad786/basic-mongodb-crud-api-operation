@@ -54,7 +54,7 @@ MongoClient.connect(connectionURL, { useNewUrlParser : true }, (error, client) =
         console.log(result);
     })
 
-    // find by id
+    // find document in collection in database by id
     db.collection('users').findOne({ _id : new ObjectId('6374fd35dc3a7d33b394a0b1') }, (error , result) => {
         if (error)
             return console.log("Unable to find Document");
