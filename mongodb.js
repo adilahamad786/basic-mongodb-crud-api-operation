@@ -83,19 +83,30 @@ MongoClient.connect(connectionURL, { useNewUrlParser : true }, (error, client) =
     // });
 
     // Update a Document from the "users" Collection Which are present in "demo" Database.
-    const updatedPromise = db.collection('users').updateOne({
+    db.collection('users').updateOne({
         _id : new ObjectId('637504e2efa1658329047c30')
     }, {
         $set : {
             name : "Aman",
             age : 23
         }
-    });
-
-    updatedPromise.then(result => {
+    }).then(result => {
         console.log(result);
     }).catch(error => {
         console.log(error);
-    })
+    });
+
+    // Update Multiple Document (Increase age by 1) from the "users" Collection Which are present in "demo" Database.
+    db.collection('users').updateMany({
+        age : 21
+    },{
+        $inc : {
+            age : 1
+        }
+    }).then(result => {
+        console.log(result);
+    }).catch(error => {
+        console.log(error);
+    });
 
 });
