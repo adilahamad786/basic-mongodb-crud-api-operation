@@ -109,9 +109,18 @@ MongoClient.connect(connectionURL, { useNewUrlParser : true }, (error, client) =
     //     console.log(error);
     // });
 
-    // Delete a Document from the "users" Collection Which are present in "demo" Database.
-    db.collection('users').deleteOne({
-        name : "Babu"
+    // // Delete a Document from the "users" Collection Which are present in "demo" Database.
+    // db.collection('users').deleteOne({
+    //     name : "Babu"
+    // }).then(result => {
+    //     console.log(result);
+    // }).catch(error => {
+    //     console.log(error);
+    // });
+
+    // Delete Multiple Document from the "users" Collection Which are present in "demo" Database.
+    db.collection('users').deleteMany({
+        age : 25
     }).then(result => {
         console.log(result);
     }).catch(error => {
