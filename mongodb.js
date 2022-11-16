@@ -1,6 +1,4 @@
-const mongodb = require('mongodb');
-
-const MongoClient = mongodb.MongoClient;
+const { MongoClient, ObjectId } = require('mongodb');
 
 const connectionURL = 'mongodb://127.0.0.1:27017';
 const databaseName = "demo";
@@ -14,29 +12,36 @@ MongoClient.connect(connectionURL, { useNewUrlParser : true }, (error, client) =
 
     const db = client.db(databaseName);
 
-    // // Insert one collection inside the "demo" Database and "users" Collection
-    // db.collection('users').insertOne({
-    //     name : "Adil Ahamad",
-    //     age : 21
-    // }, (error, result) => {
-    //     if (error)
-    //         return console.log("Unable to insert data!");
-    //     console.log(result);
-    // });
+    // Basic of GUID -> Global Unique Id
+    const id = new ObjectId();
+    console.log(id);
+    console.log(id.id)
+    console.log(id.getTimestamp());
 
     // Insert one collection inside the "demo" Database and "users" Collection
-    db.collection('users').insertMany([
-        {
-            name : "Mohin Uddin",
-            age : 22
-        },
-        {
-            name : "Junaid Khan",
-            age : 21
-        }
-    ], (error, result) => {
+    db.collection('users').insertOne({
+        _id : id,
+        name : "Adil Ahamad",
+        age : 21
+    }, (error, result) => {
         if (error)
-            return console.log("Unable to insert document!"); 
+            return console.log("Unable to insert data!");
         console.log(result);
     });
+
+    // // Insert one collection inside the "demo" Database and "users" Collection
+    // db.collection('users').insertMany([
+    //     {
+    //         name : "Mohin Uddin",
+    //         age : 22
+    //     },
+    //     {
+    //         name : "Junaid Khan",
+    //         age : 21
+    //     }
+    // ], (error, result) => {
+    //     if (error)
+    //         return console.log("Unable to insert document!"); 
+    //     console.log(result);
+    // });
 });
