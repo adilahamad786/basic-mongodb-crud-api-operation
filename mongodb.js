@@ -61,25 +61,41 @@ MongoClient.connect(connectionURL, { useNewUrlParser : true }, (error, client) =
     //     console.log(result);
     // })
 
-    // Read All Document from the "users" Collection Which are present in "demo" Database..
-    db.collection('users').find({}).toArray((error, result) => {
-        if (error)
-            return console.log("Unable to find documents!");
-        console.log(result);
+    // // Read All Document from the "users" Collection Which are present in "demo" Database..
+    // db.collection('users').find({}).toArray((error, result) => {
+    //     if (error)
+    //         return console.log("Unable to find documents!");
+    //     console.log(result);
+    // });
+
+    // // Read Multiple Document from the "users" Collection Which are present in "demo" Database which ages is same.
+    // db.collection('users').find({ age : 21 }).toArray((error, result) => {
+    //     if (error)
+    //         return console.log("Unable to find documents!");
+    //     console.log(result);
+    // });
+
+    // // Read Multiple Document from the "users" Collection Which are present in "demo" Database and count.
+    // db.collection('users').find({ age : 22 }).count((error, result) => {
+    //     if (error)
+    //         return console.log(error);
+    //     console.log(result);
+    // });
+
+    // Update a Document from the "users" Collection Which are present in "demo" Database.
+    const updatedPromise = db.collection('users').updateOne({
+        _id : new ObjectId('637504e2efa1658329047c30')
+    }, {
+        $set : {
+            name : "Aman",
+            age : 23
+        }
     });
 
-    // Read Multiple Document from the "users" Collection Which are present in "demo" Database which ages is same.
-    db.collection('users').find({ age : 21 }).toArray((error, result) => {
-        if (error)
-            return console.log("Unable to find documents!");
+    updatedPromise.then(result => {
         console.log(result);
-    });
-
-    // Read Multiple Document from the "users" Collection Which are present in "demo" Database and count.
-    db.collection('users').find({ age : 22 }).count((error, result) => {
-        if (error)
-            return console.log(error);
-        console.log(result);
-    });
+    }).catch(error => {
+        console.log(error);
+    })
 
 });
