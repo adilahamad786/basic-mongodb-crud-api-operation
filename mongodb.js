@@ -45,19 +45,41 @@ MongoClient.connect(connectionURL, { useNewUrlParser : true }, (error, client) =
     //     console.log(result);
     // });
 
-    // Read one Document from the "users" Collection Which are present in "demo" Database.
-    db.collection('users').findOne({
-        name : "Adil Ahamad"
-    }, (error, result) => {
-        if (error)
-            return console.log("Unable to find document.");
-        console.log(result);
-    })
+    // // Read one Document from the "users" Collection Which are present in "demo" Database.
+    // db.collection('users').findOne({
+    //     name : "Adil Ahamad"
+    // }, (error, result) => {
+    //     if (error)
+    //         return console.log("Unable to find document.");
+    //     console.log(result);
+    // })
 
-    // find document in collection in database by id
-    db.collection('users').findOne({ _id : new ObjectId('6374fd35dc3a7d33b394a0b1') }, (error , result) => {
+    // // find document in collection in database by id
+    // db.collection('users').findOne({ _id : new ObjectId('6374fd35dc3a7d33b394a0b1') }, (error , result) => {
+    //     if (error)
+    //         return console.log("Unable to find Document");
+    //     console.log(result);
+    // })
+
+    // Read All Document from the "users" Collection Which are present in "demo" Database..
+    db.collection('users').find({}).toArray((error, result) => {
         if (error)
-            return console.log("Unable to find Document");
+            return console.log("Unable to find documents!");
         console.log(result);
-    })
+    });
+
+    // Read Multiple Document from the "users" Collection Which are present in "demo" Database which ages is same.
+    db.collection('users').find({ age : 21 }).toArray((error, result) => {
+        if (error)
+            return console.log("Unable to find documents!");
+        console.log(result);
+    });
+
+    // Read Multiple Document from the "users" Collection Which are present in "demo" Database and count.
+    db.collection('users').find({ age : 22 }).count((error, result) => {
+        if (error)
+            return console.log(error);
+        console.log(result);
+    });
+
 });
