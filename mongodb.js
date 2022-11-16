@@ -24,7 +24,6 @@ MongoClient.connect(connectionURL, { useNewUrlParser : true }, (error, client) =
     //     console.log(result);
     // });
 
-
     // Insert one collection inside the "demo" Database and "users" Collection
     db.collection('users').insertMany([
         {
@@ -40,5 +39,4 @@ MongoClient.connect(connectionURL, { useNewUrlParser : true }, (error, client) =
             return console.log("Unable to insert document!"); 
         console.log(result);
     });
-
-})
+});
